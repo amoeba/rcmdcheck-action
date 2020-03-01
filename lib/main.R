@@ -135,7 +135,11 @@ run <- function() {
       ))
   },
   error = function(e) {
-    update_check(id, "failure", NULL)
+    update_check(id, "failure", list(
+      title = CHECK_NAME,
+      summary = "The check error'd out",
+      text = e
+    ))
   })
 }
 
