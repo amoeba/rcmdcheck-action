@@ -123,43 +123,20 @@ update_check <- function(id, conclusion, output) {
 run <- function() {
   print("run()")
   id <- create_check()
+  results <- rcmdcheck()
 
-  tryCatch({
-    print("Running rcmdcheck...")
+  conclusion <- ifelse(results$status == 0, "success", "failure")
+  print(paste("Done. Status is", results$status, "(", conclusion, ")"))
 
-    results <- rcmdcheck()
-
-    conclusion <- ifelse(results$status == 0, "success", "failure")
-    print(paste("Done. Status is", results$status, "(", conclusion, ")"))
-
-    update_check(
-      id,
-      "conclusion",
-      list(
-        title = CHECK_NAME,
-        summary = "X offenses found",
-        text = check_text(results)
-      ))
-  },
-  error = function(e) {
-    print("ERROR")
-    print(e)
-    print(e$message)
-
-    text <- c(as.character(e))
-
-    update_check(id, "failure", list(
+  update_check(
+    id,
+    "conclusion",
+    list(
       title = CHECK_NAME,
-      summary = "rcmdcheck::rcmdcheck() error'd out. See Details.",
-      text = paste(
-        c(
-          as.character(e),
-          paste(capture.output({print(x)}),
-          collapse = "\n"
-        ),
-        ), collapse = "\n\n")
-    ))
-  })
+      summary = "X offenses found",
+      text = check_text(results)
+    )
+  )
 }
 
 run()
