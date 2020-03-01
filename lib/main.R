@@ -117,11 +117,6 @@ update_check <- function(id, conclusion, output) {
     encode = "json",
     add_headers(HEADERS))
 
-  print("PATCH request made...")
-  print(req)
-  print(status_code(req))
-  print(content(req))
-
   stop_for_status(req)
 }
 
@@ -155,7 +150,7 @@ run <- function() {
     update_check(id, "failure", list(
       title = CHECK_NAME,
       summary = "The check error'd out",
-      text = e$message
+      text = as.character(e)
     ))
   })
 }
