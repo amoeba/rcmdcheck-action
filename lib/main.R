@@ -58,10 +58,6 @@ create_check <- function() {
     encode = "json",
     add_headers(HEADERS))
 
-  print(req)
-  print(status_code(req))
-  print(content(req))
-
   stop_for_status(req)
   data <- content(req)
 
@@ -81,7 +77,7 @@ update_check <- function(id, conclusion, output) {
   body <- list(
     "name" = CHECK_NAME,
     "head_sha" = GITHUB_SHA,
-    "status" = 'completed',
+    "status" = "completed",
     "completed_at" = isotime(),
     "conclusion" = conclusion,
     "output" = output
