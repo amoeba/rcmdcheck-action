@@ -42,7 +42,7 @@ create_check <- function() {
     sep = "/")
 
   body <- list(
-    name = CHECK_ANME,
+    name = CHECK_NAME,
     head_sha = GITHUB_SHA,
     status = "in_progress",
     started_at=isotime()
