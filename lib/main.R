@@ -18,7 +18,7 @@ CHECK_NAME = "rcmdcheck"
 HEADERS <- c(
   "Content-Type" = "application/json",
   "Accept" = "application/vnd.github.antiope-preview+json",
-  "Authorization" = "Bearer #{@GITHUB_TOKEN}",
+  "Authorization" = paste("Bearer", GITHUB_TOKEN),
   "User-Agent" = "rcmdcheck-action"
 )
 
