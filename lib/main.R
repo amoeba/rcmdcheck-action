@@ -71,12 +71,12 @@ update_check <- function(id, conclusion, output) {
     sep = "/")
 
   body <- list(
-    "name" => CHECK_NAME,
-    "head_sha" => GITHUB_SHA,
-    "status" => 'completed',
-    "completed_at" => isotime(),
-    "conclusion" => conclusion,
-    "output" => output
+    "name" = CHECK_NAME,
+    "head_sha" = GITHUB_SHA,
+    "status" = 'completed',
+    "completed_at" = isotime(),
+    "conclusion" = conclusion,
+    "output" = output
   )
 
   req <- PATCH(
