@@ -15,7 +15,7 @@ REPO <- REPOSITORY$name
 
 CHECK_NAME = "rcmdcheck"
 
-HEADERS <- list(
+HEADERS <- c(
   "Content-Type" = "application/json",
   "Accept" = "application/vnd.github.antiope-preview+json",
   "Authorization" = "Bearer #{@GITHUB_TOKEN}",
@@ -45,7 +45,7 @@ create_check <- function() {
     name = CHECK_NAME,
     head_sha = GITHUB_SHA,
     status = "in_progress",
-    started_at=isotime()
+    started_at = isotime()
   )
 
   req <- httr::POST(
