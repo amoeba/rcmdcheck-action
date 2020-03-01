@@ -150,7 +150,7 @@ run <- function() {
 
     update_check(id, "failure", list(
       title = CHECK_NAME,
-      summary = "The check error'd out",
+      summary = "rcmdcheck::rcmdcheck() error'd out. See Details.",
       text = paste(
         c(
           as.character(e),
