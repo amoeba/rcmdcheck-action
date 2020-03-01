@@ -6,6 +6,10 @@ print("main.R")
 GITHUB_SHA <- Sys.getenv("GITHUB_SHA")
 GITHUB_EVENT_PATH <- Sys.getenv("GITHUB_EVENT_PATH")
 GITHUB_TOKEN <- Sys.getenv("GITHUB_TOKEN")
+
+print("...>")
+print(nchar(GITHUB_TOKEN))
+
 GITHUB_WORKSPACE <- Sys.getenv("GITHUB_WORKSPACE")
 
 EVENT <- read_json(Sys.getenv("GITHUB_EVENT_PATH"))
