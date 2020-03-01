@@ -59,6 +59,8 @@ check_text <- function(result) {
 }
 
 create_check <- function() {
+  print("Creating check...")
+
   url <- paste(
     "https://api.github.com",
     "repos",
@@ -83,10 +85,14 @@ create_check <- function() {
   stop_for_status(req)
   data <- content(req)
 
+  print(paste("Created check with id of", data$id))
+
   data$id
 }
 
 update_check <- function(id, conclusion, output) {
+  print("Updating check...")
+
   url <- paste(
     "https://api.github.com",
     "repos",
@@ -111,6 +117,7 @@ update_check <- function(id, conclusion, output) {
     encode = "json",
     add_headers(HEADERS))
 
+  print("PATCH request made...")
   print(req)
   print(status_code(req))
   print(content(req))
@@ -119,11 +126,17 @@ update_check <- function(id, conclusion, output) {
 }
 
 run <- function() {
+  print("run()")
   id <- create_check()
 
   tryCatch({
+    print("Running rcmdcheck...")
+
     results <- rcmdcheck()
+
+
     conclusion <- ifelse(results$status == 0, "success", "failure")
+    print(paste("Done. Status is", results$status, "(", conclusion, ")"))
 
     update_check(
       id,
