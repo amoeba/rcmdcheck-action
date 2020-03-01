@@ -32,7 +32,7 @@ isotime <- function() {
       Sys.time(),
       "UTC",
       "%Y-%m-%dT%H:%M:%S"),
-    "%Y-%m-%dT%H:%M:%S%z"
+    "%Y-%m-%dT%H:%M:%SZ"
   )
 }
 
