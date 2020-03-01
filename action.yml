@@ -1,0 +1,19 @@
+# https://help.github.com/en/articles/metadata-syntax-for-github-actions
+name: 'rcmdcheck-action'
+author: 'https://github.com/amoeba'
+description: 'Testing'
+outputs:
+  title:
+    description: 'The title of the check'
+  summary:
+    description: 'The description of the check'
+  annotations:
+    description: 'A reference to the code failing the check'
+env:
+  'GITHUB_TOKEN': 'Automatically set by Actions'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'code'
+  color: 'blue'
