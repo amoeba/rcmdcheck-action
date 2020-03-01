@@ -127,8 +127,9 @@ run <- function() {
   tryCatch({
     print("Running rcmdcheck...")
 
-    results <- rcmdcheck()
-
+    output <- capture.output({
+      results <- rcmdcheck()
+    })
 
     conclusion <- ifelse(results$status == 0, "success", "failure")
     print(paste("Done. Status is", results$status, "(", conclusion, ")"))
@@ -150,7 +151,12 @@ run <- function() {
     update_check(id, "failure", list(
       title = CHECK_NAME,
       summary = "The check error'd out",
-      text = as.character(e)
+      text = paste(
+        c(
+          as.character(e),
+          output),
+        sep = "\n\n"
+      )
     ))
   })
 }
