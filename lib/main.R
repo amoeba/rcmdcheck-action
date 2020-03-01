@@ -151,6 +151,8 @@ run <- function() {
     text <- c(as.character(e))
 
     if (exists("output")) {
+      print("Adding capture output")
+      print(text)
       text <- c(text, paste(output, collapse = "\n"))
     }
 
