@@ -54,7 +54,6 @@ create_check <- function() {
     add_headers(HEADERS))
 
   stop_for_status(req)
-
   data = content(req)
 
   data$id
