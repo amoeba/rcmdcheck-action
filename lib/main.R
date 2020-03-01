@@ -148,6 +148,10 @@ run <- function() {
       ))
   },
   error = function(e) {
+    print("ERROR")
+    print(e)
+    print(e$message)
+
     update_check(id, "failure", list(
       title = CHECK_NAME,
       summary = "The check error'd out",
