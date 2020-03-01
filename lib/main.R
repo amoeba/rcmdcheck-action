@@ -154,7 +154,7 @@ run <- function() {
       text = paste(
         c(
           as.character(e),
-          output),
+          paste(output, collapse = "\n")),
         sep = "\n\n"
       )
     ))
