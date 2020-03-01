@@ -123,7 +123,7 @@ update_check <- function(id, conclusion, output) {
 run <- function() {
   print("run()")
   id <- create_check()
-  results <- rcmdcheck()
+  results <- rcmdcheck(args = "--no-manual")
 
   conclusion <- ifelse(results$status == 0, "success", "failure")
   print(paste("Done. Status is", results$status, "(", conclusion, ")"))
