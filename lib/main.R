@@ -63,7 +63,7 @@ create_check <- function() {
   print(content(req))
 
   stop_for_status(req)
-  data = content(req)
+  data <- content(req)
 
   data$id
 }
@@ -91,6 +91,10 @@ update_check <- function(id, conclusion, output) {
     url,
     body = body,
     add_headers(HEADERS))
+
+  print(req)
+  print(status_code(req))
+  print(content(req))
 
   stop_for_status(req)
 }
