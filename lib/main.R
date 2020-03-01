@@ -57,6 +57,10 @@ create_check <- function() {
     body = body,
     add_headers(HEADERS))
 
+  print(req)
+  print(status_code(req))
+  print(content(req))
+
   stop_for_status(req)
   data = content(req)
 
