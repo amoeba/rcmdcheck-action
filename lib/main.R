@@ -90,6 +90,7 @@ update_check <- function(id, conclusion, output) {
   req <- PATCH(
     url,
     body = body,
+    encode = "json",
     add_headers(HEADERS))
 
   print(req)
