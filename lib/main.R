@@ -148,15 +148,16 @@ run <- function() {
     print(e)
     print(e$message)
 
+    text <- c(as.character(e))
+
+    if (exists("output")) {
+      text <- c(text, paste(output, collapse = "\n"))
+    }
+
     update_check(id, "failure", list(
       title = CHECK_NAME,
       summary = "rcmdcheck::rcmdcheck() error'd out. See Details.",
-      text = paste(
-        c(
-          as.character(e),
-          paste(output, collapse = "\n")),
-        sep = "\n\n"
-      )
+      text = paste(text, sep = "\n\n")
     ))
   })
 }
