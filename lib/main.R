@@ -8,7 +8,7 @@ GITHUB_EVENT_PATH <- Sys.getenv("GITHUB_EVENT_PATH")
 GITHUB_TOKEN <- Sys.getenv("GITHUB_TOKEN")
 GITHUB_WORKSPACE <- Sys.getenv("GITHUB_WORKSPACE")
 
-EVENT <- JSON.parse(File.read(Sys.getenv("GITHUB_EVENT_PATH"))
+EVENT <- read_json(Sys.getenv("GITHUB_EVENT_PATH"))
 REPOSITORY <- EVENT$repository
 OWNER <- REPOSITORY$owner$login
 REPO <- REPOSITORY$name

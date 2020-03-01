@@ -9,6 +9,8 @@ LABEL maintainer="Bryce Mecum <petridish@gmail.com>"
 RUN apt-get update && \
   apt-get install -y libssl-dev libcurl4-openssl-dev
 
+RUN Rscript -e "install.packages(c(\"httr\", \"jsonlite\"))"
+
 COPY lib /action/lib
 ENTRYPOINT ["/action/lib/entrypoint.sh"]
 
