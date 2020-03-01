@@ -55,6 +55,7 @@ create_check <- function() {
   req <- httr::POST(
     url,
     body = body,
+    encode = "json",
     add_headers(HEADERS))
 
   print(req)
