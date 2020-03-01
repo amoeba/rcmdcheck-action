@@ -1,5 +1,6 @@
 library(httr)
 library(jsonlite)
+library(rcmdcheck)
 
 print("main.R")
 
@@ -34,6 +35,27 @@ isotime <- function() {
       "%Y-%m-%dT%H:%M:%S"),
     "%Y-%m-%dT%H:%M:%SZ"
   )
+}
+
+check_text <- function(result) {
+  out <- c()
+
+  if (length(result$notes) > 0) {
+    out <- c(out, "notes")
+    out <- c(out, result$notes)
+  }
+
+  if (length(result$warnings) > 0) {
+    out <- c(out, "warnings")
+    out <- c(out, result$warnings)
+  }
+
+  if (length(result$errors) > 0) {
+    out <- c(out, "errors")
+    out <- c(out, result$errors)
+  }
+
+  paste(out, collapse = "\n\n")
 }
 
 create_check <- function() {
@@ -100,13 +122,17 @@ run <- function() {
   id <- create_check()
 
   tryCatch({
-    update_check(id, "success", list(
-      title = CHECK_NAME,
-      summary = "X offenses found",
-      annotations = c(
-        list(message = "FOO")
-      )
-    ))
+    results <- rcmdcheck()
+    conclusion <- ifelse(results$status == 0, "success", "failure")
+
+    update_check(
+      id,
+      "conclusion",
+      list(
+        title = CHECK_NAME,
+        summary = "X offenses found",
+        text = check_text(results)
+      ))
   },
   error = function(e) {
     update_check(id, "failure", NULL)
