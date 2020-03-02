@@ -37,6 +37,29 @@ isotime <- function() {
   )
 }
 
+check_conclusion <- function(results) {
+  conclusion <- "success"
+
+  if (length(results$warnings) + length(results$errors) > 0) {
+    conclusion <- "action_required"
+  }
+
+  conclusion
+}
+
+check_summary <- function(results) {
+  NOTES <- ifelse(length(results$notes) == 1, "NOTE", "NOTES")
+  WARNINGS <- ifelse(length(results$warnings) == 1, "WARNING", "WARNINGS")
+  ERRORS <- ifelse(length(results$errors) == 1, "ERROR", "ERRORS")
+
+  paste(
+    paste(length(results$notes), NOTES),
+    paste(length(results$warnings), WARNINGS),
+    paste(length(results$errors), ERRORS),
+    sep = ", "
+  )
+}
+
 check_text <- function(result) {
   paste(
     c(
@@ -117,24 +140,16 @@ update_check <- function(id, conclusion, output) {
 
 run <- function() {
   print("run()")
+
   id <- create_check()
   results <- rcmdcheck(args = "--no-manual")
 
-  # Determine conclusion
-  conclusion <- "success"
-
-  if (length(results$warnings) + length(results$errors) > 0) {
-    conclusion <- "action_required"
-  }
-
-  print(paste("Done. Status is", results$status, "(", conclusion, ")"))
-
   update_check(
     id,
-    conclusion,
+    check_conclusion(result),
     list(
       title = CHECK_NAME,
-      summary = "X offenses found",
+      summary = check_summary(results),
       text = check_text(results)
     )
   )
