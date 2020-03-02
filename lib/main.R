@@ -38,24 +38,11 @@ isotime <- function() {
 }
 
 check_text <- function(result) {
-  out <- c()
-
-  if (length(result$notes) > 0) {
-    out <- c(out, "notes")
-    out <- c(out, result$notes)
-  }
-
-  if (length(result$warnings) > 0) {
-    out <- c(out, "warnings")
-    out <- c(out, result$warnings)
-  }
-
-  if (length(result$errors) > 0) {
-    out <- c(out, "errors")
-    out <- c(out, result$errors)
-  }
-
-  paste(out, collapse = "\n\n")
+  paste(c(
+    result$notes,
+    result$warnings,
+    result$errors,
+  ), collapse = "\n\n")
 }
 
 create_check <- function() {
@@ -130,7 +117,7 @@ run <- function() {
 
   update_check(
     id,
-    "conclusion",
+    "completed",
     list(
       title = CHECK_NAME,
       summary = "X offenses found",
