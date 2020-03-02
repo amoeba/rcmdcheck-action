@@ -146,7 +146,7 @@ run <- function() {
 
   update_check(
     id,
-    check_conclusion(result),
+    check_conclusion(results),
     list(
       title = CHECK_NAME,
       summary = check_summary(results),
