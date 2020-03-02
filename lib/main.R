@@ -96,7 +96,6 @@ update_check <- function(id, conclusion, output) {
 
   body <- list(
     "name" = CHECK_NAME,
-    "head_sha" = GITHUB_SHA,
     "status" = "completed",
     "completed_at" = isotime(),
     "conclusion" = conclusion,
