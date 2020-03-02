@@ -40,7 +40,7 @@ isotime <- function() {
 check_text <- function(result) {
   paste(
     c(
-      "# R CMD CHECK RESULTS"
+      "# R CMD CHECK RESULTS",
       "## NOTES",
       ifelse(length(result$notes) == 0, "No notes", result$notes),
       "## WARNINGS",
