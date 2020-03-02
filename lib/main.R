@@ -102,6 +102,9 @@ update_check <- function(id, conclusion, output) {
     "output" = output
   )
 
+  print(body)
+  dput(body)
+
   req <- PATCH(
     url,
     body = body,
