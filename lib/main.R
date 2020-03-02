@@ -18,7 +18,7 @@ REPOSITORY <- EVENT$repository
 OWNER <- REPOSITORY$owner$login
 REPO <- REPOSITORY$name
 
-CHECK_NAME = "rcmdcheck"
+CHECK_NAME <- "rcmdcheck"
 
 HEADERS <- c(
   "Content-Type" = "application/json",
@@ -124,7 +124,7 @@ run <- function() {
 
   update_check(
     id,
-    "completed",
+    "success",
     list(
       title = CHECK_NAME,
       summary = "X offenses found",
