@@ -120,15 +120,14 @@ run <- function() {
   id <- create_check()
   results <- rcmdcheck(args = "--no-manual")
 
-
-  print(paste("Done. Status is", results$status, "(", conclusion, ")"))
-
   # Determine conclusion
   conclusion <- "success"
 
   if (length(results$warnings) + length(results$errors) > 0) {
     conclusion <- "action_required"
   }
+
+  print(paste("Done. Status is", results$status, "(", conclusion, ")"))
 
   update_check(
     id,
