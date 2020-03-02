@@ -38,11 +38,16 @@ isotime <- function() {
 }
 
 check_text <- function(result) {
-  paste(c(
-    result$notes,
-    result$warnings,
-    result$errors,
-  ), collapse = "\n\n")
+  paste(
+    c(
+      "## NOTES",
+      result$notes,
+      "## WARNINGS",
+      result$warnings,
+      "##ERRORS",
+      result$errors
+    ),
+    collapse = "\n\n")
 }
 
 create_check <- function() {
